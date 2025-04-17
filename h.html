@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Your IP Address</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    video {
+      max-width: 90%;
+      height: auto;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome!</h1>
+  <!-- You can change this to any message you want -->
+
+  <!-- Autoplaying, muted, looping video -->
+  <video autoplay muted loop>
+    <!-- NOTE: Avoid spaces and special characters in filenames. Rename the video file to something simple like: rico-animations.mp4 -->
+    <source src="hhh.mp4" type="video/mp4" />
+    Your browser does not support the video tag.
+  </video>
+
+  <script>
+    // Sends a request to the ipify API to get the user's public IP in JSON format
+    fetch("https://api.ipify.org?format=json")
+      .then(response => response.json())
+      .then(data => {
+        const userIP = data.ip;
+
+        // Do something with the IP address (e.g., log it)
+        console.log("User's IP address:", userIP);
+
+        // Optionally, send it to your own backend
+        /*
+        fetch("https://your-server.com/collect-ip", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ ip: userIP })
+        });
+        */
+      })
+      .catch(() => {
+        console.error("Could not fetch IP address.");
+      });
+  </script>
+</body>
+</html>
